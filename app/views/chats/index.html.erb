@@ -1,8 +1,27 @@
-<h1>List of chats</h1>
-<ul></ul>
-  <% @chats.each do |chat| %>
-    <li>
-      <%= link_to "chat id: " + chat.id.to_s , chat_path(chat) %>
+<h1>List of Chats</h1>
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>sender_id</th>
+      <th>receiver_id</th>
       
-    </li>
-  <% end %>
+      <th>created_at</th>
+      <th>updated_at</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @chats.each do |chat| %>
+      <tr>
+        <td><%= chat.id %></td>
+        <td><%= chat.sender_id %></td>
+        <td><%= chat.receiver_id %></td>
+        
+        <td><%= chat.created_at %></td>
+        <td><%= chat.updated_at %></td>
+        <td><%= link_to "see chat", chat_path(chat)%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
