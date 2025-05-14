@@ -1,7 +1,80 @@
-<h1>User id: <%=@user.id%> </h1>
-<p>first_name:  <%=@user.first_name%> </p>
-<p>last_name:  <%=@user.last_name%> </p>
-<p>Email:  <%=@user.email%> </p>
-<p>Created_at:  <%=@user.created_at%> </p>
-<p> updated_at:  <%=@user.updated_at%> </p>
-<%= link_to "back",users_path%>
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-header bg-primary text-white">
+      <h3>User ID: <%= @user.id %></h3>
+    </div>
+    <div class="card-body">
+      <p><strong>First Name:</strong> <%= @user.first_name %></p>
+      <p><strong>Last Name:</strong> <%= @user.last_name %></p>
+      <p><strong>Email:</strong> <%= @user.email %></p>
+      <p><strong>Created At:</strong> <%= @user.created_at %></p>
+      <p><strong>Updated At:</strong> <%= @user.updated_at %></p>
+    </div>
+    <div class="card-footer">
+      <%= link_to "← Back", users_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-md-6">
+      <h4>Chats Enviados</h4>
+      <ul class="list-group">
+        <% @user.sent_chats.each do |chat| %>
+          <li class="list-group-item">
+            <p><strong>To (Receiver ID):</strong> <%= chat.receiver_id %></p>
+            <p><strong>Sent At:</strong> <%= chat.created_at %></p>
+
+            
+            <div>
+              <p><strong>Messages Sent by <%= @user.first_name %>:</strong></p>
+              <ul class="list-group">
+                <% chat.messages.where(user_id: @user.id).each do |message| %>
+                  <li class="list-group-item">
+                    <%= message.body %>
+                    <br>
+                    <small class="text-muted">Sent at: <%= message.created_at.strftime("%d %b %Y, %H:%M") %></small>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+
+            <div class="d-flex gap-2 mt-3">
+              <%= link_to "View", chat_path(chat), class: "btn btn-sm btn-primary" %>
+              <%= link_to "Edit", edit_chat_path(chat), class: "btn btn-sm btn-warning" %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="col-md-6 mt-4">
+      <h4>Chats Recibidos</h4>
+      <ul class="list-group">
+        <% @received_chats.each do |chat| %>
+          <li class="list-group-item">
+            <p><strong>From (Sender ID):</strong> <%= chat.sender_id %></p>
+            <p><strong>Received At:</strong> <%= chat.created_at %></p>
+
+            
+            <div>
+              <p><strong>Messages Sent by <%= @user.first_name %>:</strong></p>
+              <ul class="list-group">
+                <% chat.messages.where(user_id: @user.id).each do |message| %>
+                  <li class="list-group-item">
+                    <%= message.body %>
+                    <br>
+                    <small class="text-muted">Sent at: <%= message.created_at.strftime("%d %b %Y, %H:%M") %></small>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+
+            <div class="d-flex gap-2 mt-3">
+              <%= link_to "View", chat_path(chat), class: "btn btn-sm btn-primary" %>
+              <%= link_to "Edit", edit_chat_path(chat), class: "btn btn-sm btn-warning" %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

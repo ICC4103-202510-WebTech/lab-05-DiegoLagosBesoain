@@ -10,6 +10,7 @@
       <th>created_at</th>
       <th>updated_at</th>
       <th>Link</th>
+      <th>Edit</th>
     </tr>
   </thead>
   <tbody>
@@ -22,6 +23,7 @@
         <td><%= chat.created_at %></td>
         <td><%= chat.updated_at %></td>
         <td><%= link_to "see chat", chat_path(chat)%></td>
+        <td><%= link_to "edit chat", edit_chat_path(chat)%></td>
       </tr>
     <% end %>
   </tbody>

@@ -1,14 +1,5 @@
 <%= form_with model: @chat, local: true do |form| %>
-    <% if @chat.errors.any? %>
-      <div class="error-messages">
-        <h2><%= pluralize(@chat.errors.count, "error") %> do not let create the chat:</h2>
-        <ul>
-          <% @chat.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
+    
   
     <div>
       <%= form.label :sender_id, "sender_id" %>
@@ -25,5 +16,5 @@
     <div>
       <%= form.submit "CREATE" %>
     </div>
-  <% end %>
+<% end %>
   

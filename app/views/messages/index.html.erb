@@ -10,6 +10,7 @@
       <th>created_at</th>
       <th>updated_at</th>
       <th>Link</th>
+      <th>Edit</th>
     </tr>
   </thead>
   <tbody>
@@ -22,6 +23,7 @@
         <td><%= message.created_at %></td>
         <td><%= message.updated_at %></td>
         <td><%= link_to "see message", message_path(message)%></td>
+        <td><%= link_to "edit message", edit_message_path(message)%></td>
       </tr>
     <% end %>
   </tbody>
