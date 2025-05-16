@@ -4,21 +4,29 @@
       <h4>Message ID: <%= @message.id %></h4>
     </div>
     <div class="card-body">
-      <p><strong>User:</strong> <%= @user.first_name %> <%= @user.last_name %></p>
+      <p><strong>Author:</strong> <%= @user.first_name %> <%= @user.last_name %> (User ID: <%= @user.id %>)</p>
+      
       <p><strong>Chat ID:</strong> <%= @chat.id %></p>
-      <p><strong>Chat Between:</strong> 
-        <%= @chat.sender.first_name %> <%= @chat.sender.last_name %> 
-        and 
-        <%= @chat.receiver.first_name %> <%= @chat.receiver.last_name %>
+      
+      <p><strong>Sender:</strong> 
+        <%= @chat.sender.first_name %> <%= @chat.sender.last_name %> (Sender ID: <%= @chat.sender_id %>)
       </p>
+      
+      <p><strong>Receiver:</strong> 
+        <%= @chat.receiver.first_name %> <%= @chat.receiver.last_name %> (Receiver ID: <%= @chat.receiver_id %>)
+      </p>
+
       <hr>
+      
       <p><strong>Message Body:</strong></p>
       <p><%= @message.body %></p>
+      
       <small class="text-muted">Created at: <%= @message.created_at.strftime("%d %b %Y, %H:%M") %></small>
     </div>
+    
     <div class="card-footer">
       <%= link_to "Back to Messages", messages_path, class: "btn btn-secondary" %>
-      <%= link_to "Edit Message", edit_message_path, class: "btn btn-dark" %>
+      <%= link_to "Edit Message", edit_message_path(@message), class: "btn btn-dark" %>
     </div>
   </div>
 </div>

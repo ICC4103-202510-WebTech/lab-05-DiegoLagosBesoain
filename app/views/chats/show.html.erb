@@ -4,25 +4,22 @@
       <h4>Chat ID: <%= @chat.id %></h4>
     </div>
     <div class="card-body">
-      <p><strong>Sender:</strong> <%= @chat.sender.first_name %> <%= @chat.sender.last_name %></p>
-      <p><strong>Receiver:</strong> <%= @chat.receiver.first_name %> <%= @chat.receiver.last_name %></p>
+      <p><strong>Sender:</strong> <%= @chat.sender.first_name %> <%= @chat.sender.last_name %> (ID: <%= @chat.sender_id %>)</p>
+      <p><strong>Receiver:</strong> <%= @chat.receiver.first_name %> <%= @chat.receiver.last_name %> (ID: <%= @chat.receiver_id %>)</p>
       <hr>
       <h5>Messages</h5>
       <ul class="list-group">
         <% @messages.each do |message| %>
           <li class="list-group-item">
-            <p><strong><%= message.user.first_name %>:</strong> <%= message.body %></p>
-            <small class="text-muted"><%= message.created_at.strftime("%d %b %Y, %H:%M") %></small>
+            <p><strong><%= message.user.first_name %> <%= message.user.last_name %>:</strong> <%= message.body %></p>
+            <small class="text-muted">Sent At: <%= message.created_at.strftime("%d %b %Y, %H:%M") %></small>
           </li>
         <% end %>
       </ul>
     </div>
     <div class="card-footer">
       <%= link_to "Back to Chats", chats_path, class: "btn btn-secondary" %>
-      <%= link_to "Edit chat", edit_chat_path, class: "btn btn-dark" %>    
+      <%= link_to "Edit Chat", edit_chat_path(@chat), class: "btn btn-dark" %>    
     </div>
-    
-      
-    
   </div>
 </div>

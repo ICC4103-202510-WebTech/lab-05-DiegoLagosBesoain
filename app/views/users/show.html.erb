@@ -11,37 +11,36 @@
       <p><strong>Updated At:</strong> <%= @user.updated_at %></p>
     </div>
     <div class="card-footer">
-      <%= link_to "Back to users", users_path, class: "btn btn-secondary" %>
+      <%= link_to "Back to Users", users_path, class: "btn btn-secondary" %>
       <%= link_to "Edit User", edit_user_path(@user), class: "btn btn-dark" %>
     </div>
   </div>
 
-  
   <div class="mt-5">
-    <h4>Todos los Chats</h4>
+    <h4>All Chats</h4>
     <ul class="list-group">
       <% @chats.each do |chat| %>
         <li class="list-group-item">
           <p><strong>Chat ID:</strong> <%= chat.id %></p>
-          <p><strong>Participantes:</strong> <%= chat.sender_id == @user.id ? "Tú (Sender)" : chat.sender_id %> ↔ <%= chat.receiver_id == @user.id ? "Tú (Receiver)" : chat.receiver_id %></p>
-          <p><strong>Creado el:</strong> <%= chat.created_at.strftime("%d %b %Y, %H:%M") %></p>
+          <p><strong>Sender ID:</strong> <%= chat.sender_id %></p>
+          <p><strong>Receiver ID:</strong> <%= chat.receiver_id %></p>
+          <p><strong>Created At:</strong> <%= chat.created_at.strftime("%d %b %Y, %H:%M") %></p>
           <div class="d-flex gap-2 mt-2">
-            <%= link_to "Ver", chat_path(chat), class: "btn btn-sm btn-primary" %>
-            <%= link_to "Editar", edit_chat_path(chat), class: "btn btn-sm btn-warning" %>
+            <%= link_to "View", chat_path(chat), class: "btn btn-sm btn-primary" %>
+            <%= link_to "Edit", edit_chat_path(chat), class: "btn btn-sm btn-warning" %>
           </div>
         </li>
       <% end %>
     </ul>
   </div>
 
-  >
   <div class="mt-5">
-    <h4>Mensajes Enviados por <%= @user.first_name %></h4>
+    <h4>Messages Sent by <%= @user.first_name %></h4>
     <ul class="list-group">
       <% @messages.each do |message| %>
         <li class="list-group-item">
           <p><%= message.body %></p>
-          <small class="text-muted">Enviado el: <%= message.created_at.strftime("%d %b %Y, %H:%M") %></small><br>
+          <small class="text-muted">Sent At: <%= message.created_at.strftime("%d %b %Y, %H:%M") %></small><br>
           <small class="text-muted">Chat ID: <%= message.chat_id %></small>
         </li>
       <% end %>
