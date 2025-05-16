@@ -15,7 +15,7 @@ class ChatsController < ApplicationController
   def create
       @chat = Chat.new(chat_params)
       if @chat.save
-          redirect_to @chat, notice: "Chat creado correctamente"
+          redirect_to @chat, notice: "Chat Created"
       else
         flash[:alert] = "#{@chat.errors.full_messages.join(", ")}"
         redirect_to new_chat_path
@@ -25,7 +25,7 @@ class ChatsController < ApplicationController
   end
   def update
   if @chat.update(chat_params)
-      redirect_to @chat, notice: "Chat creado correctamente"
+      redirect_to @chat, notice: "Chat Update!"
     else
       flash[:alert] = "#{@chat.errors.full_messages.join(", ")}"
       redirect_to edit_chat_path

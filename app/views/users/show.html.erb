@@ -11,7 +11,8 @@
       <p><strong>Updated At:</strong> <%= @user.updated_at %></p>
     </div>
     <div class="card-footer">
-      <%= link_to "← Back", users_path, class: "btn btn-secondary" %>
+      <%= link_to "Back to users", users_path, class: "btn btn-secondary" %>
+      <%= link_to "Edit User", edit_user_path, class: "btn btn-dark" %>
     </div>
   </div>
 

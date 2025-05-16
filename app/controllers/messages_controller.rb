@@ -14,7 +14,16 @@ class MessagesController < ApplicationController
     def new
         @message = Message.new
     end
-
+    def create
+        @message = Message.new(message_params)
+        if @message.save
+          redirect_to @message, notice: "Message Created"
+        else
+          flash[:alert] = "#{@message.errors.full_messages.join(", ")}"
+          redirect_to new_message_path
+          
+        end
+    end
     def edit
         
     end
@@ -23,23 +32,14 @@ class MessagesController < ApplicationController
         
         
         if @message.update(message_params)
-          redirect_to @message, notice: "Mensaje actualizado correctamente."
+          redirect_to @message, notice: "Menssage Updated"
         else
           flash[:alert] = "#{@message.errors.full_messages.join(", ")}"
           redirect_to edit_message_path
         end
     end
 
-    def create
-        @message = Message.new(message_params)
-        if @message.save
-          redirect_to @message, notice: "Mensaje creado correctamente."
-        else
-          flash[:alert] = "#{@message.errors.full_messages.join(", ")}"
-          redirect_to new_message_path
-          
-        end
-    end
+
     private
     def set_message
         @message=Message.find(params["id"])
