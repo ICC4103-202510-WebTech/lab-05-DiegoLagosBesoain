@@ -6,11 +6,14 @@ class UsersController < ApplicationController
     end
 
     def show
-        @user=User.find(params[:id])
-        @sent_chats=@user.sent_chats
-        @received_chats = @user.received_chats
-    end
+    @user = User.find(params[:id])
 
+    
+    @chats = Chat.where("sender_id = :id OR receiver_id = :id", id: @user.id)
+
+    
+    @messages = Message.where(user_id: @user.id)
+    end
     def new
         @user = User.new
         
