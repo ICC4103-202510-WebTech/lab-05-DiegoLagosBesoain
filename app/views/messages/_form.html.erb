@@ -3,7 +3,9 @@
   
     <div>
       <%= f.label :chat_id, "Chat" %>
-      <%= f.select :chat_id, Chat.all.map { |chat| [chat.id, chat.id] }, prompt: "Selecciona un chat" %>
+      <%= f.select :chat_id, 
+          Chat.where("sender_id = ? OR receiver_id = ?", current_user.id, current_user.id).map { |chat| ["Chat ##{chat.id}", chat.id] }, 
+          prompt: "Select one of your chats" %>
     </div>
   
     <div>

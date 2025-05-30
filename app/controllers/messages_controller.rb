@@ -18,7 +18,7 @@ class MessagesController < ApplicationController
     def create
         @message = Message.new(message_params)
         if @message.save
-          redirect_to @message, notice: "Message Created"
+          redirect_to messages_path, notice: "Message Created"
         else
           flash[:alert] = "#{@message.errors.full_messages.join(", ")}"
           redirect_to new_message_path
@@ -33,7 +33,7 @@ class MessagesController < ApplicationController
         
         
         if @message.update(message_params)
-          redirect_to @message, notice: "Menssage Updated"
+          redirect_to messages_path, notice: "Menssage Updated"
         else
           flash[:alert] = "#{@message.errors.full_messages.join(", ")}"
           redirect_to edit_message_path

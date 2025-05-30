@@ -7,10 +7,10 @@ class Ability
     can [:read,:create], User
     can [:index,:create], Message
     can [:index,:create], Chat
-    can [:update, :destroy], Message, user_id: user.id
-    can [:update, :destroy], Chat, receiver_id: user.id
-    can [:update, :destroy], Chat, 	sender_id: user.id
-    can [:update, :destroy], User, id: user.id
+    can [:update,:show, :destroy], Message, user_id: user.id
+    can [:update,:show, :destroy], Chat, receiver_id: user.id
+    can [:update,:show, :destroy], Chat, 	sender_id: user.id
+    can [:update,:show, :destroy], User, id: user.id
     # Define abilities for the user here. For example:
     #
     #   return unless user.present?

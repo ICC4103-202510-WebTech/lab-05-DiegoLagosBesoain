@@ -1,23 +1,32 @@
 <%= form_with model: @user, local: true do |form| %>
-    
-  
+  <div>
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name %>
+  </div>
+
+  <div>
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name %>
+  </div>
+
+  <div>
+    <%= form.label :email %>
+    <%= form.email_field :email %>
+  </div>
+
+  <% if @user.new_record? || @user == current_user %>
     <div>
-      <%= form.label :first_name %>
-      <%= form.text_field :first_name %>
+      <%= form.label :password %>
+      <%= form.password_field :password, autocomplete: "new-password" %>
     </div>
+
     <div>
-      <%= form.label :last_name %>
-      <%= form.text_field :last_name %>
-    </div>
-  
-    <div>
-      <%= form.label :email %>
-      <%= form.email_field :email %>
-    </div>
-  
-   
-  
-    <div>
-      <%= form.submit "Crear Usuario" %>
+      <%= form.label :password_confirmation %>
+      <%= form.password_field :password_confirmation, autocomplete: "new-password" %>
     </div>
   <% end %>
+
+  <div>
+    <%= form.submit @user.new_record? ? "Crear Usuario" : "Actualizar Usuario", class: "btn btn-primary" %>
+  </div>
+<% end %>
