@@ -1,20 +1,17 @@
 <%= form_with model: @chat, local: true do |form| %>
-    
-  
-    <div>
-      <%= form.label :sender_id, "sender_id" %>
-      <%= form.collection_select :sender_id, User.all, :id, :id, prompt: "Select User" %>
-  
-    </div>
-  
-    <div>
-      <%= form.label :receiver_id, "receiver_id" %>
-      <%= form.collection_select :receiver_id, User.all, :id, :id, prompt: "Select User" %>
-  
-    </div>
-  
-    <div>
-      <%= form.submit "CREATE" %>
-    </div>
+
+  <p>Estás creando un chat como: <strong><%= current_user.email %></strong></p>
+  <%= form.hidden_field :sender_id, value: current_user.id %>
+
+  <div>
+    <%= form.label :receiver_id, "Selecciona al receptor" %>
+    <%= form.collection_select :receiver_id, 
+        User.where.not(id: current_user.id), 
+        :id, :email, prompt: "Selecciona un usuario" %>
+  </div>
+
+  <div>
+    <%= form.submit "Crear Chat" %>
+  </div>
+
 <% end %>
-  

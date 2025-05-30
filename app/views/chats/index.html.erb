@@ -24,9 +24,9 @@
         <td><%= chat.created_at %></td>
         <td><%= chat.updated_at %></td>
         <td><%= link_to "see chat", chat_path(chat)%></td>
-        
+        <% if can? :edit, chat %>
         <td><%= link_to "edit chat", edit_chat_path(chat)%></td>
-        
+        <% end %>
         
       </tr>
       <% end %>

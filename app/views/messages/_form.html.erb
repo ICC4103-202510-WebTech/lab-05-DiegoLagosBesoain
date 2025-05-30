@@ -1,24 +1,22 @@
 <%= form_with model: @message, local: true do |f| %>
-    
   
-    <div>
-      <%= f.label :chat_id, "Chat" %>
-      <%= f.select :chat_id, 
-          Chat.where("sender_id = ? OR receiver_id = ?", current_user.id, current_user.id).map { |chat| ["Chat ##{chat.id}", chat.id] }, 
-          prompt: "Select one of your chats" %>
-    </div>
-  
-    <div>
-      <%= f.label :user_id, "User (author)" %>
-      <%= f.select :user_id, User.all.map { |user| [user.id, user.id] }, prompt: "Selecciona un usuario" %>
-    </div>
-  
-    <div>
-      <%= f.label :body, "body" %><br>
-      <%= f.text_area :body %>
-    </div>
-  
-    <div>
-      <%= f.submit "Enviar Mensaje" %>
-    </div>
-  <% end %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+
+  <div>
+    <%= f.label :chat_id, "Chat" %>
+    <%= f.select :chat_id, 
+        Chat.where("sender_id = ? OR receiver_id = ?", current_user.id, current_user.id)
+            .map { |chat| ["Chat ##{chat.id}", chat.id] }, 
+        prompt: "Select one of your chats" %>
+  </div>
+
+  <div>
+    <%= f.label :body, "body" %><br>
+    <%= f.text_area :body %>
+  </div>
+
+  <div>
+    <%= f.submit "Enviar Mensaje" %>
+  </div>
+
+<% end %>

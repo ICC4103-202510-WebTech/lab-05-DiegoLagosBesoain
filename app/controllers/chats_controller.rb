@@ -26,7 +26,7 @@ class ChatsController < ApplicationController
   end
   def update
   if @chat.update(chat_params)
-      redirect_to chats_pat, notice: "Chat Update!"
+      redirect_to chats_path, notice: "Chat Update!"
     else
       flash[:alert] = "#{@chat.errors.full_messages.join(", ")}"
       redirect_to edit_chat_path
