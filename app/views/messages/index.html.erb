@@ -15,7 +15,7 @@
   </thead>
   <tbody>
     <% @messages.each do |message| %>
-      <% if can? :edit, message %>
+      <% if can? :read, message %>
       <tr>
         <td><%= message.id %></td>
         <td><%= message.chat_id %></td>
