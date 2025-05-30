@@ -30,9 +30,9 @@
           <p><strong>Created At:</strong> <%= chat.created_at.strftime("%d %b %Y, %H:%M") %></p>
           <div class="d-flex gap-2 mt-2">
             <%= link_to "View", chat_path(chat), class: "btn btn-sm btn-primary" %>
-            
+             <% if can? :edit, chat %>
             <%= link_to "Edit", edit_chat_path(chat), class: "btn btn-sm btn-warning" %>
-            
+             <% end %>
           </div>
         </li>
       
