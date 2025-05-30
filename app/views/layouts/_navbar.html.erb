@@ -4,15 +4,24 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      
       <div class="navbar-nav">
         <%= link_to 'Users', users_path, class: 'nav-link' %>
         <%= link_to 'Messages', messages_path, class: 'nav-link' %>
         <%= link_to 'Chats', chats_path, class: 'nav-link' %>
-        <li class="nav-item">
-          <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
-        </li>
       </div>
+
+      
+      <% if user_signed_in? %>
+        <div class="ms-auto d-flex align-items-center gap-3">
+          <span class="navbar-text">
+            Logged in as <strong><%= current_user.first_name + " " + current_user.last_name %></strong>
+          </span>
+          <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-outline-danger", form: { class: "d-inline" } %>
+        </div>
+      <% end %>
     </div>
   </div>
 </nav>
