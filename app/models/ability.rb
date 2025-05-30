@@ -5,10 +5,11 @@ class Ability
 
   def initialize(user)
     can [:read,:create], User
-    
-    can [:read,:create], Message, user_id: user.id
-    can [:read,:create], Chat, receiver_id: user.id
-    can [:read,:create], Chat, sender_id: user.id
+    can :create ,Message
+    can :create,Chat
+    can [:read], Message, user_id: user.id
+    can [:read], Chat, receiver_id: user.id
+    can [:read], Chat, sender_id: user.id
     can :read , Message,chat: {receiver_id:user.id}
     can [:update,:show, :destroy], Message, user_id: user.id
     can [:update,:show, :destroy], Chat, receiver_id: user.id
