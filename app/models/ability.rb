@@ -9,7 +9,7 @@ class Ability
     can [:read,:create], Message, user_id: user.id
     can [:read,:create], Chat, receiver_id: user.id
     can [:read,:create], Chat, sender_id: user.id
-    can :read,Message,chat: {receiver_id:user.id}
+    can :read , Message,chat: {receiver_id:user.id}
     can [:update,:show, :destroy], Message, user_id: user.id
     can [:update,:show, :destroy], Chat, receiver_id: user.id
     can [:update,:show, :destroy], Chat, 	sender_id: user.id

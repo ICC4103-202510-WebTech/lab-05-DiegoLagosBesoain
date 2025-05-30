@@ -24,9 +24,9 @@
         <td><%= message.created_at %></td>
         <td><%= message.updated_at %></td>
         <td><%= link_to "see message", message_path(message)%></td>
-        
+        <% if can? :edit, message %>
         <td><%= link_to "edit message", edit_message_path(message)%></td>
-        
+        <% end %>
       </tr>
       <% end %>
     <% end %>
