@@ -15,6 +15,7 @@
   </thead>
   <tbody>
     <% @messages.each do |message| %>
+      <% if can? :edit, message %>
       <tr>
         <td><%= message.id %></td>
         <td><%= message.chat_id %></td>
@@ -23,8 +24,11 @@
         <td><%= message.created_at %></td>
         <td><%= message.updated_at %></td>
         <td><%= link_to "see message", message_path(message)%></td>
+        
         <td><%= link_to "edit message", edit_message_path(message)%></td>
+        
       </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

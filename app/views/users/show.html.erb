@@ -12,14 +12,17 @@
     </div>
     <div class="card-footer">
       <%= link_to "Back to Users", users_path, class: "btn btn-secondary" %>
+      <% if can? :edit, @user %>
       <%= link_to "Edit User", edit_user_path(@user), class: "btn btn-dark" %>
+      <% end%>
     </div>
   </div>
-
+  <% if can? :edit, @user %>
   <div class="mt-5">
     <h4>All Chats</h4>
     <ul class="list-group">
       <% @chats.each do |chat| %>
+        
         <li class="list-group-item">
           <p><strong>Chat ID:</strong> <%= chat.id %></p>
           <p><strong>Sender ID:</strong> <%= chat.sender_id %></p>
@@ -27,10 +30,13 @@
           <p><strong>Created At:</strong> <%= chat.created_at.strftime("%d %b %Y, %H:%M") %></p>
           <div class="d-flex gap-2 mt-2">
             <%= link_to "View", chat_path(chat), class: "btn btn-sm btn-primary" %>
+            
             <%= link_to "Edit", edit_chat_path(chat), class: "btn btn-sm btn-warning" %>
+            
           </div>
         </li>
-      <% end %>
+      
+      <% end%>
     </ul>
   </div>
 
@@ -38,6 +44,7 @@
     <h4>Messages Sent by <%= @user.first_name %></h4>
     <ul class="list-group">
       <% @messages.each do |message| %>
+        
         <li class="list-group-item">
           <p><%= message.body %></p>
           <small class="text-muted">Sent At: <%= message.created_at.strftime("%d %b %Y, %H:%M") %></small><br>
@@ -45,5 +52,7 @@
         </li>
       <% end %>
     </ul>
+   
   </div>
 </div>
+<% end%>

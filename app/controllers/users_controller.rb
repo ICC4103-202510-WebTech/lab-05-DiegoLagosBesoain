@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+    load_and_authorize_resource
     before_action :set_user, only: [ :edit, :update ]
     def index
         @users=User.all
@@ -15,8 +16,7 @@ class UsersController < ApplicationController
     @messages = Message.where(user_id: @user.id)
     end
     def new
-        @user = User.new
-        
+      redirect_to new_user_registration_path
     end
     
     def create

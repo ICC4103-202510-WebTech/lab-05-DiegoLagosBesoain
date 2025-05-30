@@ -26,7 +26,9 @@
     
     <div class="card-footer">
       <%= link_to "Back to Messages", messages_path, class: "btn btn-secondary" %>
-      <%= link_to "Edit Message", edit_message_path(@message), class: "btn btn-dark" %>
+      <% if can? :edit, @message %>
+            <%= link_to "Edit", edit_chat_path(@message), class: "btn btn-dark" %>
+      <% end%>   
     </div>
   </div>
 </div>
