@@ -1,4 +1,13 @@
-# lab-05
+# INFORMACION IMPORTANTE
+
+el user 1 esta como admin se puede usar con user1@xd.cl y la clave es password123
+todos los otros users son usuarios normales
+
+
+
+
+
+
 
 ## Create your first ruby and rails models
 
