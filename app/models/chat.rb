@@ -6,7 +6,12 @@ class Chat < ApplicationRecord
     validates :receiver_id, presence: true  
     validates :sender_id, presence: true
     validate :sender_and_receiver_cannot_be_the_same
-
+    scope :involving, ->(user) {
+    where("sender_id = ? OR receiver_id = ?", user.id, user.id)
+    }
+    def other_user(current_user)
+      sender == current_user ? receiver : sender
+    end
     private
 
     def sender_and_receiver_cannot_be_the_same
@@ -14,5 +19,6 @@ class Chat < ApplicationRecord
         errors.add(:receiver_id, "no puede ser igual al remitente")
         end
     end
+    
 
 end

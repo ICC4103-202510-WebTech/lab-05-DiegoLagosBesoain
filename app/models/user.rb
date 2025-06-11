@@ -9,7 +9,9 @@ class User < ApplicationRecord
     has_many :received_chats, class_name: 'Chat', foreign_key: 'receiver_id'
     has_many :received_messages ,through: :received_chats,source: :messages
     validates :email, presence: true, uniqueness: true
-
+    def admin?
+        self.admin
+    end
     def full_name
         "#{first_name} #{last_name}"
     end

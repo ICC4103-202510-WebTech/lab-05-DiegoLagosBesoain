@@ -4,7 +4,10 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can [:read,:create], User
+
+    if user.admin? 
+      can :manage, :all
+    else
     
     can [:read,:create], Message, user_id: user.id
     can [:read,:create], Chat, receiver_id: user.id
@@ -14,6 +17,7 @@ class Ability
     can [:show], Chat, receiver_id: user.id
     can [:update,:show, :destroy], Chat, 	sender_id: user.id
     can [:update,:show, :destroy], User, id: user.id
+    end
     # Define abilities for the user here. For example:
     #
     #   return unless user.present?

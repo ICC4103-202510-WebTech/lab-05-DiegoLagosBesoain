@@ -2,8 +2,7 @@ class ChatsController < ApplicationController
   load_and_authorize_resource
   before_action :set_chat, only: [ :edit, :update ]
   def index
-        @chats=Chat.all
-    
+        @chats = Chat.involving(current_user)
   end
   def show
         @chat = Chat.find(params[:id])
@@ -47,4 +46,5 @@ class ChatsController < ApplicationController
     def chat_params
       params.require(:chat).permit(:sender_id, :receiver_id)
     end
+    
 end
