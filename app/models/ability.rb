@@ -16,6 +16,7 @@ class Ability
     can [:update,:show, :destroy], Message, user_id: user.id
     can [:show], Chat, receiver_id: user.id
     can [:update,:show, :destroy], Chat, 	sender_id: user.id
+    can [:update,:show, :destroy], Chat, 	receiver_id: user.id
     can [:update,:show, :destroy], User, id: user.id
     end
     # Define abilities for the user here. For example:
